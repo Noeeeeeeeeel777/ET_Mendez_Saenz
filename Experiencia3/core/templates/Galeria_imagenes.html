@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/estilos.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+    <link rel="icon" href="{% static 'img/logo.png' %}">
+
+    <title>Galeria</title>
+
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>    
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark mb-4">
+        <img src="{% static 'img/logo.png' %}" alt="logo" width="30px">
+            <h4>NacTour</h4>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#Opciones"
+        aria-controls="Opciones" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="Opciones">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'inicio' %}">INICIO</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'quienes_somos' %}">QUIENES SOMOS</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'Galeria_imagenes'%}">GALERIA DE IMÁGENES</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'nuevo_formulario_' %}">CONTACTO</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'mostrarDestino' %}">DESTINOS INGRESADOS</a>
+                </li>
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'mostrar' %}">CLIENTES INGRESADOS</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Bienvenid@ {{user.username}}</a>
+                </li>
+                {% endif %}    
+            </ul>
+            <div>
+                {% if user.is_authenticated %}
+                    <a href="{% url 'logout' %}" id="salir">
+                       <input type="submit" value="Cerrar Sesión" class="btn btn-primary" style="float: right;">
+                    </a>
+                {% else %}    
+                <a href="{% url 'login' %}" id="ingresar">
+                    <input type="submit" value="Iniciar Sesión" class="btn btn-primary" style="float: right;">
+                </a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+    <br>
+
+<!--RELOJ-->
+    <section>
+        <div class="reloj">
+            <span id="tiempo">00 : 00 : 00</span>
+        </div>
+    </section>
+    <script src="{% static 'js/utilidad_java.js' %}"></script>
+    
+<!--INICIA LA GALERIA-->
+    <h2>Galeria</h2>
+    <h5>Aquí encontrará información valiosa sobre nuestros lugares turísticos</h5>
+    <br><br>
+
+<!--1-->
+    <div class="row col-12">
+        <div class="col" >
+            <div class="responsive" style="text-align: center;" >
+                <img src="{% static 'img/isla-grande-de-chiloe.jpg' %}" width="450" height="300" >  
+                    <div class="row">
+                        <a href="#ex1" rel="modal:open " style="color: rgb(0, 0, 0); ">Chiloé</a>
+                    </div>
+                    <div id="ex1" class="modal f1-modal">
+                        <h2>Chiloé</h2>
+                        <p>Cuando el ferry procedente de Puerto Montt te deja en la isla de Chiloé, aunque aún no lo sepas, acabas de entrar en otro mundo.
+                        <br><br>
+                        Apenas separada del Chile continental por una estrecha franja de agua, el misterio que rodea a Chiloé es tan grande que parece que te encuentras en un cuento de hadas.
+                        <br><br>
+                        Leyendas sobre buques fantasmas que secuestran gente por la noche, el mítico Caleuche, hadas, duendes y sirenas, pueblan la mitología de unas gentes reservadas y duras, que capean el adverso clima junto a un buen fuego. <br><br>                La belleza natural de Chiloé rivaliza con su misticismo. Playas y calas desiertas, grandes extensiones de bosque y pequeñas poblaciones que aguantan los fuertes vientos y las bravas mareas.</p>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <br><br>
+
+<!--2-->
+    <div class="row col-12">
+        <div class="col" >
+            <div class="responsive" style="text-align: center;" >
+                <img src="{% static 'img/san-pedro-de-atacama.jpg' %}" width="450" height="300"> 
+                    <div class="row">
+                        <a href="#ex2" rel="modal:open" style="color: rgb(0, 0, 0);">San Pedro de Atacama</a>
+                    </div>
+                    <div id="ex2" class="modal f1-modal">
+                        <h2>San Pedro de Atacama</h2>
+                        <p>En el desierto de Atacama, una población de calles de arena y casas de madera atrae a un buen número de turistas cada año.
+                        <br><br>
+                        En San Pedro de Atacama te sientes desligado del mundo real y quedarte allí te reportará una paz mental que repara almas dañadas. Los antiguos indios aseguraban que el desierto de Atacama era un lugar místico de grandes poderes. Ve a comprobarlo tú mismo.</p>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <br><br>
+
+<!--3-->
+    <div class="row col-12">
+        <div class="col" >
+            <div class="responsive" style="text-align: center;" >
+                <img src="{% static 'img/parque-nacional-torres-del-paine.jpg' %}" width="450" height="300">
+                    <div class="row">
+                        <a href="#ex3" rel="modal:open" style="color: rgb(0, 0, 0);">Torres del Paine</a>
+                    </div>
+                    <div id="ex3" class="modal f1-modal">
+                        <h2>Torres del Paine</h2>
+                        <p>Otro de los lugares de interés de Chile más célebres y bellos es el Parque Nacional Torres del Paine.
+                        <br><br>
+                        Realizando senderismo en él, siendo el circuito más famoso el de la W, podrás pasar por montañas de hasta 3.000 msnm, valles, ríos, lagos (como el Pehoé o el Sarmiento) y glaciares (como el Grey, el Tyndall y el Pingo).
+                        <br><br>
+                        El paisaje te mantendrá constantemente boquiabierto y el premio final lo alcanzarás al culminar la ascensión que te lleva al mirador de las Torres.</p>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <br><br>
+
+<!--4-->
+    <div class="row col-12">
+        <div class="col" >
+            <div class="responsive" style="text-align: center;" >
+                <img src="{% static 'img/parque-nacional-laguna-san-rafael.jpg' %}" width="450" height="300">
+                    <div class="row">
+                        <a href="#ex4" rel="modal:open" style="color: rgb(0, 0, 0);">Laguna San Rafael</a>
+                    </div>
+                    <div id="ex4" class="modal f1-modal">
+                        <h2>Laguna San Rafael</h2>
+                        <p>Los 123 kilómetros cuadrados de este lago costero de la región de Aysén ofrece una estampa preciosa al viajero. Tanto el lago como el entorno natural que le rodea forman parte del Parque Nacional Laguna San Rafael. En él hallarás los hielos milenarios de los Campos de Hielo Norte, el monte San Valentín (4.058 msnm) y el ventisquero que desagua en la laguna.</p>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <br><br>
+
+<!--5-->
+    <div class="row col-12">
+        <div class="col" >
+            <div class="responsive" style="text-align: center;" >
+                <img src="{% static 'img/santiago-de-chile.jpg' %}" width="450" height="300">
+                    <div class="row">
+                        <a href="#ex5" rel="modal:open" style="color: rgb(0, 0, 0);">Santiago</a>
+                    </div>
+                    <div id="ex5" class="modal f1-modal">
+                        <h2>Santiago</h2>
+                        <p>La capital de Chile es una ciudad que ofrece caras muy distintas.
+                        <br><br>
+                        De los cerros que rodean la ciudad, parten callejuelas estrechas que forman una maraña de barrios que esconden historias humanas. Todas ellas confluyen, finalmente, en el centro, donde el Palacio de La Moneda recuerda la historia reciente de Chile. 
+                        <br><br>
+                        Tómate unas copas en la zona de Constitución y acaba en una de las muchas fiestas que hay por la ciudad.
+                        <br>La vida nocturna es una de las mejores bazas de Santiago de Chile.</p>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <br><br>
+
+<!--6-->
+    <div class="row col-12">
+        <div class="col" >
+            <div class="responsive" style="text-align: center;" >
+                <img src="{% static 'img/isla-de-pascua.jpg' %}" width="450" height="300">
+                    <div class="row">
+                        <a href="#ex6" rel="modal:open" style="color: rgb(0, 0, 0);">Isla de Pascua</a>
+                    </div>
+                    <div id="ex6" class="modal f1-modal">
+                        <h2>Isla de Pascua</h2>
+                        <p>El lugar que suele figurar en el primer puesto de la lista de lugares turísticos de Chile se halla a casi cinco horas de vuelo de la capital del país.
+                        <br><br>
+                        La misteriosa isla de Pascua se encuentra perdida en el Pacífico y sus míticos Moais la custodian día y noche. Cuando pisas su superficie, sientes una energía poderosa y parece que casi puedes ver a los rapanuis trabajar sus grandes deidades esculpidas en piedra.</p>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <br><br>
+
+<!--7-->
+    <div class="row col-12">
+        <div class="col" >
+            <div class="responsive" style="text-align: center;" >
+                <img src="{% static 'img/volcan-osorno.jpg' %}" width="450" height="300">
+                    <div class="row">
+                        <a href="#ex7" rel="modal:open" style="color: rgb(0, 0, 0);">Volcán Osorno</a>
+                    </div>
+                    <div id="ex7" class="modal f1-modal">
+                        <h2>Volcán Osorno</h2>
+                        <p>El volcán Osorno ejerce la función de guardián de fuego en la puerta de entrada a la Patagonia chilena.
+                        <br><br>
+                        Se encuentra en la cordillera andina, a orillas del lago Llanquihue y es uno de los volcanes más hermosos de Sudamérica.
+                        <br><br>
+                        Su imponente silueta cónica de 2.652 msnm se divisa desde la lejanía, formando una de las estampas más icónicas que ver en Chile.
+                        <br><br>
+                        Hace más de 125 años que está inactivo y en sus laderas se puede practicar esquí, además de la organización de excursiones guiadas hasta su cima.</p>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <br><br>
+
+<!--8-->
+    <div class="row col-12">
+        <div class="col" >
+            <div class="responsive" style="text-align: center;" >
+                <img src="{% static 'img/43129-valdivia-christian-cordova-3-@2x.jpg' %}" width="450" height="300">
+                    <div class="row">
+                        <a href="#ex8" rel="modal:open" style="color: rgb(0, 0, 0);">Valdivia</a>
+                    </div>
+                    <div id="ex8" class="modal f1-modal">
+                        <h2>Valdivia</h2>
+                        <p>La capital de la región de Los Ríos debe su nombre al conquistador español, Don Pedro de Valdivia.
+                        <br><br>
+                        Fue fundada en 1552 y durante la época colonial fue considerada la llave del mar del sur, siendo un enclave estratégico de vital importancia para el control del acceso al Pacífico. Por este motivo se construyeron un gran número de fortificaciones.</p>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <br><br>
+
+<!--ENLACE PARA LAS API-->
+    <div class="container-fluid">
+        <div class="row col-12">
+            <div class="col" style="text-align: center;">
+                <h3>Si desea ver más comentarios o fotos...</h3>
+                <a href="{% url 'Api' %}" class="btn btn-outline-dark">Haga clic aquí</a>
+            </div>
+        </div>
+    </div>
+
+    <footer> <!--                           PIE DE PÁGINA                           -->
+        <div class="row col-12">
+            <div class="col-lg-2">
+                <img src="{% static 'img/logo.png' %}" alt="logoBookStop" width="60px">
+            </div>
+            <div class="col-lg-1">
+                <a href="{% url 'inicio' %}" id="linkFooter" style="color: rgb(196, 219, 255); font-size: 15px;"><strong>INICIO</strong></a>
+            </div>
+            <div class="col-lg-2">
+                <a href="{% url 'quienes_somos' %}" id="linkFooter" style="color: rgb(196, 219, 255); font-size: 15px;"><strong>QUIENES SOMOS</strong></a>  
+            </div>
+            <div class="col-lg-2">
+                <a href="{% url 'Galeria_imagenes'%}" id="linkFooter" style="color: rgb(196, 219, 255); font-size: 15px;"><strong>GALERIA DE IMAGENES</strong></a>  
+            </div>
+            
+
+            <div class="col-lg-2">
+                <strong>Síguenos</strong>
+                <br>
+                <div class="row">
+                    <a href="https://www.facebook.com/profile.php?id=100083394426070&mibextid=ZbWKwL" target="_blank">
+                        <img src="{% static 'img/logo_facebook.jpg' %}" alt=""  class="rounded" width="20px" height="20px" style=" margin-top: 10px;">
+                    </a>
+                </div>
+                <div class="row">
+                    <a href="https://instagram.com/pinatas_y_colores?utm_medium=copy_link" target="_blank">
+                        <img src="{% static 'img/logo_instagram.jpg' %}" alt="" class="rounded" width="20px" height="20px" style=" margin-top: 10px;" >
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-3 ">
+                <strong>Contacto</strong>
+                <br>
+                <div class="row">
+                    <div class="col contactofooter">
+                        <img src="{% static 'img/logo_localizacion.png' %}" alt="" width="20px" height="20px"
+                        style="margin-right: 10px; margin-left: 15px; text-align: center;"><strong>Av. Los Adobes 2080, Maipú</strong>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col contactofooter">
+                        <img src="{% static 'img/logo_telefono.png' %}" alt="" width="20px" height="20px"
+                        style="margin-right: 10px; margin-left: 15px; text-align: center;"><strong>(+56) 9 86915630</strong>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col contactofooter">
+                        <img src="{% static 'img/logo_email.png' %}" alt="" width="20px" height="20px"
+                        style="margin-right: 10px; margin-left: 15px; text-align: center;"><strong>pinatasycolores@gmail.com</strong>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col">
+                        <strong>Autores</strong>
+                        <div class="row contactofooter">
+                            <ul>
+                                <li>Marialejandra Méndez R.</li>
+                                <li>Noel Saenz L.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <p>&copy; Copyrigth Derechos reservados</p>
+            </div>
+        </div>
+    </footer>
+
+
+</body>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+<script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script>
+<script src="js/validacion.js"></script>
+
+
+
+</html>
