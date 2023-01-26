@@ -1,4 +1,4 @@
 # ET_Mendez_Saenz
 
-Exp3
-1234
+usuario: exp3
+contraseña: 1234
